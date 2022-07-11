@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>X3D</title>
+    <script type='text/javascript' src='https://www.x3dom.org/download/x3dom.js'> </script> 
+    <link rel='stylesheet' type='text/css' href='https://www.x3dom.org/download/x3dom.css'>
+</head>
+<body background="texturas/spacetwo.png">
+    <x3d>
+      <scene>
+<transform DEF="SSolar">
+        <shape>
+          <appearance>
+                     <imageTexture url='texturas/csol.jpg'/>
+                 </appearance>
+                 <sphere />
+        </shape>
+
+            <!-- Planeta mercurio -->
+            <transform translation="2 0 0" scale="0.13 0.13 0.13">
+                <inline url="mercurio.x3d"> </inline>
+            </transform>
+
+            <!-- Planeta venus -->
+            <transform translation="3 0 3" scale="0.17 0.17 0.17">
+                <inline url="venus.x3d"> </inline>
+            </transform>
+
+            <!-- Planeta tierra -->
+            <transform translation="1 0 4" scale="0.15 0.15 0.15">
+                <inline url="tierra.x3d"> </inline>
+            </transform>
+
+            <!-- luna -->
+            <transform translation="0.45 0 4" scale="0.03 0.03 0.03">
+                <inline url="luna.x3d"> </inline>
+            </transform>
+
+             <!-- Planeta marte -->
+             <transform translation="0 0 5" scale="0.13 0.13 0.13">
+                <inline url="marte.x3d"> </inline>
+            </transform>
+
+            <!-- Planeta jupiter -->
+            <transform translation="1 0 6" scale="0.45 0.45 0.45">
+                <inline url="jupiter.x3d"> </inline>
+            </transform>
+
+            <!-- Planeta saturno -->
+            <transform translation="3 0 7" scale="0.40 0.40 0.40">
+                <inline url="saturno.x3d"> </inline>
+            </transform>
+
+            <!-- Anillos saturno -->
+            <transform translation="3 0 7" scale="0.45 0.45 0.45">
+                <inline url="anillos.x3d"> </inline>
+            </transform>
+
+            <!-- Planeta urano -->
+            <transform translation="2 0 8" scale="0.22 0.22 0.22">
+                <inline url="urano.x3d"> </inline>
+            </transform>
+
+            <!-- Planeta neptuno -->
+            <transform translation="4 0 9" scale="0.20 0.20 0.20">
+                <inline url="neptuno.x3d"> </inline>
+            </transform>
+
+            <!-- Planeta pluton -->
+            <transform translation="1 0 10" scale="0.03 0.03 0.03">
+                <inline url="pluton.x3d"> </inline>
+            </transform>
+
+<!-- Parámetros de animación: sensor de tiempo y cuál eje se animará -->
+                <timeSensor DEF='timer' cycleInterval='10' loop='true'></timeSensor>
+                <orientationInterpolator DEF='rotator' key='0 0.5 1' keyValue='0 1 0 0 0 1 0 3.14 0 1 0 6.28'>
+                </orientationInterpolator>
+            </transform>
+            <!-- ROUTE canaliza el sensor de tiempo y la rotación al transform -->
+            <ROUTE fromNode='timer' fromField='fraction_changed' toNode='rotator' toField='set_fraction'></ROUTE>
+            <ROUTE fromNode='rotator' fromField='value_changed' toNode='SSolar' toField='set_rotation'></ROUTE>
+      </scene>
+    </x3d>
+</body>
+</html>
